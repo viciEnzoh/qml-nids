@@ -78,7 +78,8 @@ def select_model(model_name, NUM_CLASSES, N_QUBITS=5, N_LAYERS=3, N_FEATURES=4, 
             n_features=N_FEATURES,
             n_packets=N_PACKETS,
             num_classes=NUM_CLASSES,
-            dev_name = dev_name
+            dev_name = dev_name,
+            n_shots=N_SHOTS
         )
     elif model_name == "hybrid_ampe_probs":
         from qml_models import AmpeCNNLSTMModel as QModel
@@ -89,7 +90,20 @@ def select_model(model_name, NUM_CLASSES, N_QUBITS=5, N_LAYERS=3, N_FEATURES=4, 
             n_features=N_FEATURES,
             n_packets=N_PACKETS,
             num_classes=NUM_CLASSES,
-            dev_name = dev_name
+            dev_name = dev_name,
+            n_shots=N_SHOTS
+        )
+    elif model_name == "ange_probs":
+        from qnn_torch_models import AngeDenseModel as QModel
+        is_quantum = True
+        model = QModel(
+            n_qubits=N_QUBITS,
+            n_layers=N_LAYERS,
+            n_features=N_FEATURES,
+            n_packets=N_PACKETS,
+            num_classes=NUM_CLASSES,
+            dev_name = dev_name,
+            n_shots=N_SHOTS
         )
     elif model_name == "hybrid":
         from qml_models import CNNLSTMModel as CModel
@@ -208,7 +222,6 @@ def main():
     args = parse_args()
 
     dataset_path = args.dataset_path
-    random_seed = args.random_seed
     dev_name = args.dev_name
     gpu_id = args.gpu_id
 
@@ -236,6 +249,7 @@ def main():
     N_LAYERS = config["N_LAYERS"]
     N_SHOTS = args.num_shots
 
+    # CPU, or CUDA dev
     DEVICE = torch.device(f"cuda:{gpu_id}" if torch.cuda.is_available() else "cpu")
 
     output_dir = f"{args.output_dir}/{model_name}"
@@ -353,15 +367,14 @@ def main():
         model = model.to(DEVICE).double()
         print(model.get_model_name())
         print(model)
-        total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-        print(f"Totale parametri addestrabili: {total_params:,}")
+        
         start_time = time.time()
 
         model_path = f"{exp_path}/fold_{i}/model.pth"
         state_dict = torch.load(model_path, map_location=torch.device(DEVICE))
         model.load_state_dict(state_dict, strict=True)
+        
         model.eval()
-
         all_preds = []
         all_labels = []
         all_soft_outputs = []
@@ -374,7 +387,7 @@ def main():
                 probs = softmax(outputs)
                 soft_max, predicted = probs.max(1)
                 all_preds.extend(predicted.cpu().numpy())
-                all_labels.extend(labels.cpu().numpy()) # Replace with all_labels.extend(labels.numpy()) if using CPU
+                all_labels.extend(labels.cpu().numpy())
                 all_soft_outputs.extend(probs.cpu().numpy())
 
         with open(f"{fold_dir}/soft_output.dat", "w") as f:
