@@ -146,6 +146,62 @@ class AmpeDenseModel(nn.Module):
         return f"AmpeDense_Q{self.n_qubits}_L{self.n_layers}"
 
 
+class AngeDenseModel(nn.Module):
+    def __init__(self, n_qubits, n_layers, n_packets, n_features, num_classes, random_seed=42, dev_name="default.qubit", n_shots=None):
+
+        super(AngeDenseModel, self).__init__()
+
+        self.n_qubits = n_qubits
+        self.n_layers = n_layers
+        self.n_packets = n_packets
+        self.n_features = n_features
+        self.num_classes = num_classes
+        self.random_seed = random_seed
+        self.dev_name = dev_name
+        self.n_shots = n_shots
+
+        self.dev = select_quantum_device(dev_name, n_qubits)
+
+        q_output_size = meas_qoutputsize_mapping(n_qubits)["probs"]
+
+        @qml.qnode(self.dev, interface="torch")
+        def qnode(inputs, weights):
+            # Feature map
+            qml.AngleEmbedding(inputs, wires=range(n_qubits))
+
+            # Ansatz
+            qml.StronglyEntanglingLayers(weights, wires=range(n_qubits))
+
+            # Measurement process
+            return qml.probs(wires=range(n_qubits))
+
+        self.qnode = qnode
+        if self.dev_name.startswith("fake"): self.qnode = qml.set_shots(self.qnode, self.n_shots)
+
+        weight_shapes = {"weights": (n_layers, n_qubits, 3)}
+        self.flatten = nn.Flatten()
+
+        input_dim = n_packets * n_features
+        self.dense1 = nn.Linear(input_dim, n_qubits)
+        self.relu = nn.ReLU()
+
+        self.q_layer = qml.qnn.TorchLayer(self.qnode, weight_shapes)
+
+        self.dense2 = nn.Linear(q_output_size, num_classes)
+
+    def forward(self, x):
+        x = self.flatten(x)
+        x = self.dense1(x)
+        x = self.relu(x)
+        x = self.q_layer(x)
+        return self.dense2(x)
+
+    def get_model_name(self):
+        return f"AngeDense_Q{self.n_qubits}_L{self.n_layers}_{self.n_packets}x{self.n_features}_C{self.num_classes}"
+
+    def get_model_name_short(self):
+        return f"AngeDense_Q{self.n_qubits}_L{self.n_layers}"
+
 class AmpeCNNLSTMModel(nn.Module):
     def __init__(self, n_qubits, n_layers, n_packets, n_features, num_classes, random_seed=42, dev_name="default.qubit", n_shots=None):
 

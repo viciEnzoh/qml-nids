@@ -94,7 +94,7 @@ def select_model(model_name, NUM_CLASSES, N_QUBITS=5, N_LAYERS=3, N_FEATURES=4, 
             n_shots=N_SHOTS
         )
     elif model_name == "ange_probs":
-        from qnn_torch_models import AngeDenseModel as QModel
+        from qml_models import AngeDenseModel as QModel
         is_quantum = True
         model = QModel(
             n_qubits=N_QUBITS,
