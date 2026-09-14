@@ -39,7 +39,7 @@ In the following table, we report all the configurations used for the experiment
 | :--- | :--- |
 | Optimization & Training | *Optimizer*: **Adam**<br>*Learning Rate*: **0.001**<br>*Loss Function*: **Categorical Cross-Entropy**<br>*Max Epochs*: **100**<br>*Early Stopping*: **Patience = 10 epochs**<br>*Validation Strategy*: **Stratified 5-Fold Cross-Validation** |
 | Quantum Circuit Specs | *Number of qubits*: **5**<br>*Quantum Encoding Schemes*: **AMPlitude (AMPe), ANGle (ANGe)**<br>*Ansatz*: **Strongly Entangling Layers**<br>*Ansatz Depth*: **3** |
-| Simulation & Hardware | *Ideal Simulator*: **default.qubit**<br>*Noisy Backends*: **FakeLagos, FakeNairobi, FakeLondon, FakeFractional, FakeYorktown**<br>*Number of shots*: **8, 64, 1024** |
+| Simulation & Hardware | *Ideal Simulator*: **default.qubit**<br>*Noisy Backends*: **FakeLagos, FakeNairobi, FakeLondon, FakeFractionalBackend, FakeYorktown**<br>*Number of shots*: **8, 64, 1024** |
 | Operational Evaluation | *Misuse Detection Metric*: **pAUC at 1% FPR**<br>*Attack Classification Metric*: **(macro) F1-score**<br>*Time-to-Insight Deadlines (tau)*: **0.05, 0.1, 0.5, 1, 5, 10 seconds**<br>*Calibration Metric*: **Expected Calibration Error (ECE)** |
 ---
 
