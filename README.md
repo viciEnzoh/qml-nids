@@ -33,6 +33,8 @@ Then, go in the **`Experiments`** folder and launch the wished script.
 
 ## Info for reproducibility
 
+In the following table, we report all the configurations used for the experiments conducted in this paper:
+
 | Parameter Category | Configuration |
 | :--- | :--- |
 | Optimization & Training | *Optimizer*: **Adam**<br>*Learning Rate*: **0.001**<br>*Loss Function*: **Categorical Cross-Entropy**<br>*Max Epochs*: **100**<br>*Early Stopping*: **Patience = 10 epochs**<br>*Validation Strategy*: **Stratified 5-Fold Cross-Validation** |
@@ -44,7 +46,7 @@ Then, go in the **`Experiments`** folder and launch the wished script.
 
 ## Example scripts
 
-- **`qml_train_and_test.py`** — Description of what this script does.
+- **`qml_train_and_test.py`** — Train and evaluate a DL/QML model.
 ```bash
   python3 qml_train_and_test.py \
       --model-name ampe_fixed_probs \
