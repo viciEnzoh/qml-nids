@@ -29,7 +29,20 @@ source q_venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Then, go in the **`Experiments`** folder and launch the wished script among the following:
+Then, go in the **`Experiments`** folder and launch the wished script.
+
+## Info for reproducibility
+
+| Parameter Category | Configuration |
+| :--- | :--- |
+| Optimization & Training | *Optimizer*: **Adam**<br>*Learning Rate*: **0.001**<br>*Loss Function*: **Categorical Cross-Entropy**<br>*Max Epochs*: **100**<br>*Early Stopping*: **Patience = 10 epochs**<br>*Validation Strategy*: **Stratified 5-Fold Cross-Validation** |
+| Quantum Circuit Specs | *Number of qubits*: **5**<br>*Quantum Encoding Schemes*: **AMPlitude (AMPe), ANGle (ANGe)**<br>*Ansatz*: **Strongly Entangling Layers**<br>*Ansatz Depth*: **3** |
+| Simulation & Hardware | *Ideal Simulator*: **default.qubit**<br>*Noisy Backends*: **FakeLagos, FakeNairobi, FakeLondon, FakeFractional, FakeYorktown**<br>*Number of shots*: **8, 64, 1024** |
+| Operational Evaluation | *Misuse Detection Metric*: **pAUC at 1% FPR**<br>*Attack Classification Metric*: **(macro) F1-score**<br>*Time-to-Insight Deadlines (tau)*: **0.05, 0.1, 0.5, 1, 5, 10 seconds**<br>*Calibration Metric*: **Expected Calibration Error (ECE)** |
+---
+
+
+## Example scripts
 
 - **`qml_train_and_test.py`** — Description of what this script does.
 ```bash
