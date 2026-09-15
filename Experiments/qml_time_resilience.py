@@ -176,22 +176,6 @@ def parse_args():
         help="Random seed"
     )
 
-    # (useless)
-    # parser.add_argument(
-    #     "--exp-folder",
-    #     type=str,
-    #     required=True,
-    #     help="Folder where the trained model is present"
-    # )
-
-    # (useless)
-    # parser.add_argument(
-    #     "--model-name",
-    #     type=str,
-    #     required=True,
-    #     help="Name of the model to use"
-    # )
-
     parser.add_argument(
         "--dev-name",
         type=str,
@@ -329,20 +313,6 @@ def main():
     if DEVICE.type == 'cuda':
         print(f"GPU: {torch.cuda.get_device_name(0)}")
 
-    # Reproducibilty
-    random.seed(RANDOM_SEED)
-    np.random.seed(RANDOM_SEED)
-    os.environ['PYTHONHASHSEED'] = str(RANDOM_SEED)
-    torch.manual_seed(RANDOM_SEED)
-    torch.cuda.manual_seed(RANDOM_SEED)
-    torch.cuda.manual_seed_all(RANDOM_SEED)
-
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-
-    print(f"Quantum device: {dev_name}")
-    if dev_name.startswith("fake"): print(f"No. of shots: {N_SHOTS}")
-
     torch.use_deterministic_algorithms(True)
     os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
 
@@ -375,7 +345,7 @@ def main():
         json.dump(dictionary, f)
 
 
-    kfold = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=split_seed) # maybe split_seed useless, in case replace with RANDOM_SEED
+    kfold = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=split_seed)
         
     for threshold in thresholds:
 
@@ -392,7 +362,7 @@ def main():
             y_temp = y_encoded[train]
 
 
-            X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=VAL_SIZE, stratify=y_temp, random_state=split_seed) # preset random_state
+            X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=VAL_SIZE, stratify=y_temp, random_state=split_seed)
                     
             X_test = X_raw[test]
             y_test = y_encoded[test]
@@ -400,7 +370,7 @@ def main():
 
             print("Preprocessing data...")
             scaler = MinMaxScaler(feature_range=(0, 1))
-            scaler.fit(np.reshape(X_temp, [-1, N_FEATURES])) # X_temp = training set before split train-valid
+            scaler.fit(np.reshape(X_temp, [-1, N_FEATURES]))
             X_train_proc = preprocess_data(X_train, scaler, TIME_THRESHOLD=threshold)
             X_val_proc = preprocess_data(X_val, scaler, TIME_THRESHOLD=threshold)
             X_test_proc = preprocess_data(X_test, scaler, TIME_THRESHOLD=threshold)

@@ -203,7 +203,6 @@ def parse_args():
         "--gpu-id",
         type=str,
         default="0",
-        # choices=["0", "1"],
         help="ID of the GPU executing the task (default: 0)"
     )
 
@@ -332,7 +331,7 @@ def main():
     benign_idx = next(k for k, v in dictionary.items() if v == 'benign')
     print(f"Benign index: {benign_idx}")
 
-    kfold = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=split_seed) # maybe split_seed useless, in case replace with RANDOM_SEED
+    kfold = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=split_seed)
     i = 1
     for (train_src, test_src), (_, test_tgt) in zip(kfold.split(X_raw_src, y_raw_src), kfold.split(X_raw_tgt, y_raw_tgt)):
         print(f"FOLD {i}/{NUM_FOLDS}")
@@ -341,7 +340,7 @@ def main():
 
         X_temp = X_raw_src[train_src]
         y_temp = y_raw_src[train_src]
-        X_train, _, _, _ = train_test_split(X_temp, y_temp, test_size=VAL_SIZE, stratify=y_temp, random_state=split_seed) # preset random_state
+        X_train, _, _, _ = train_test_split(X_temp, y_temp, test_size=VAL_SIZE, stratify=y_temp, random_state=split_seed)
 
         print("Preprocessing data...")
         print(f"Source dataset path: {source_dataset_path}")

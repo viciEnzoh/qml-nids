@@ -317,7 +317,7 @@ def main():
         json.dump(dictionary, f)
 
 
-    kfold = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=split_seed) # maybe split_seed useless, in case replace with RANDOM_SEED
+    kfold = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=split_seed)
     i = 1
     for train, test in kfold.split(X_raw, y_encoded):
         print(f"FOLD {i}/{NUM_FOLDS}")
@@ -329,7 +329,7 @@ def main():
         y_temp = y_encoded[train]
                 
 
-        X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=VAL_SIZE, stratify=y_temp, random_state=split_seed) # preset random_state
+        X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=VAL_SIZE, stratify=y_temp, random_state=split_seed)
 
         X_test = X_raw[test]
         y_test = y_encoded[test]
@@ -350,8 +350,8 @@ def main():
         val_dataset = UsedDataset(X_val_proc, y_val, DEVICE)
         test_dataset = UsedDataset(X_test_proc, y_test, DEVICE)
 
-        train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0) #
-        val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0) #
+        train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
+        val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0)
         test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0)
 
         model, is_quantum = select_model(

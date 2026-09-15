@@ -213,7 +213,6 @@ def parse_args():
         "--gpu-id",
         type=str,
         default="0",
-        # choices=["0", "1"],
         help="ID of the GPU executing the task (default: 0)"
     )
 
@@ -320,7 +319,7 @@ def main():
     VAL_SIZE = 0.2
     TEST_SIZE = 0.2
 
-    kfold = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=split_seed) # maybe split_seed useless, in case replace with RANDOM_SEED
+    kfold = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=split_seed)
     i = 1
     for train, test in kfold.split(X_raw, y_encoded):
         print(f"FOLD {i}/{NUM_FOLDS}")
@@ -334,7 +333,7 @@ def main():
         X_test = X_raw[test]
         y_test = y_encoded[test]
 
-        X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=VAL_SIZE, stratify=y_temp, random_state=split_seed) # preset random_state
+        X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=VAL_SIZE, stratify=y_temp, random_state=split_seed)
 
         print(f"Train shape: {X_train.shape} ({len(X_train)/len(X_raw):.1%})")
         print(f"Val shape:   {X_val.shape}   ({len(X_val)/len(X_raw):.1%})")
@@ -372,7 +371,6 @@ def main():
             dev_name=dev_name
         )
 
-        # model = torch.nn.DataParallel(model)
         model = model.to(DEVICE).double()
         print(model.get_model_name())
         print(model)
