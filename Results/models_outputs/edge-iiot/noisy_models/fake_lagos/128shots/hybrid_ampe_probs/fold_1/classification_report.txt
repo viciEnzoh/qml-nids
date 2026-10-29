@@ -1,0 +1,20 @@
+                   precision    recall  f1-score   support
+
+           benign     0.9905    0.9129    0.9501    106715
+         dos-http     0.7584    0.9790    0.8547      2424
+         dos-icmp     0.4174    0.6449    0.5068      4816
+      dos-tcp-syn     0.9716    0.7997    0.8773      2352
+          dos-udp     0.6004    0.2552    0.3581      5788
+    infog-scan-os     0.0000    0.0000    0.0000        27
+  infog-scan-port     0.9991    0.5323    0.6945      1997
+  infog-scan-vuln     0.9694    0.3287    0.4910       289
+      inject-http     0.4568    0.9340    0.6135      1516
+       inject-sql     0.7889    0.1619    0.2687       877
+       inject-xss     0.0667    0.0087    0.0154       230
+  malwr-backd-tcp     0.1481    0.0226    0.0392       177
+malwr-brutef-http     0.6631    0.9966    0.7963     18901
+ malwr-ransomware     0.0000    0.0000    0.0000       115
+
+         accuracy                         0.8741    146224
+        macro avg     0.5593    0.4698    0.4618    146224
+     weighted avg     0.8996    0.8741    0.8740    146224

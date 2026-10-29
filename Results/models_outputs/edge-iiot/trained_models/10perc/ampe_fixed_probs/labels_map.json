@@ -1,0 +1,1 @@
+{"0": "benign", "1": "dos-http", "2": "dos-icmp", "3": "dos-tcp-syn", "4": "dos-udp", "5": "infog-scan-os", "6": "infog-scan-port", "7": "infog-scan-vuln", "8": "inject-http", "9": "inject-sql", "10": "inject-xss", "11": "malwr-backd-tcp", "12": "malwr-brutef-http", "13": "malwr-ransomware"}
