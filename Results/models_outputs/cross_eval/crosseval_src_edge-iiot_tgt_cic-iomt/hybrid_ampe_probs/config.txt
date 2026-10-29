@@ -1,0 +1,21 @@
+model_name = hybrid_ampe_probs
+Source Dataset path = ~/qml-nids/Datasets/edge-iiot.pickle
+Target Dataset path = ~/qml-nids/Datasets/cic-iomt.pickle
+RANDOM_SEED = 2025
+
+NUM_FOLDS = 5
+
+BATCH_SIZE = 50
+
+SUB_SAMPLE_RATIO = 1.0
+
+(Split seed is fixed to 2025)
+
+N_PACKETS = 10
+N_FEATURES = 4
+
+N_QUBITS = 5
+N_LAYERS = 3
+(Quantum) dev_name = default.qubit
+
+DEVICE (cuda or gpu) = cpu

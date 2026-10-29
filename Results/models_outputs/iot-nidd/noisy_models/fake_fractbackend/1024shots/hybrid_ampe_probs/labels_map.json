@@ -1,0 +1,1 @@
+{"0": "benign", "1": "dos-http", "2": "dos-tcp-ack", "3": "dos-tcp-syn", "4": "dos-udp", "5": "infog-scan-host", "6": "infog-scan-os", "7": "infog-scan-port", "8": "malwr-brutef-telnet", "9": "mitm-arpspoof"}
