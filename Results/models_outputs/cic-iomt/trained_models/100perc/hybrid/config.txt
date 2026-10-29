@@ -1,0 +1,23 @@
+model_name = hybrid
+DATA_PATH = ~/qml-nids/Datasets/cic-iomt.pickle
+BATCH_SIZE = 50
+EPOCHS = 100
+LEARNING_RATE = 0.001
+ENABLE_EARLY_STOPPING = True
+PATIENCE = 10
+RANDOM_SEED = 2025
+
+NUM_FOLDS = 5
+
+SUB_SAMPLE_RATIO = 1.0
+
+(Split seed is fixed to 2025)
+
+N_PACKETS = 10
+N_FEATURES = 4
+
+N_QUBITS = 5
+N_LAYERS = 3
+(Quantum) dev_name = default.qubit
+
+DEVICE (cuda or gpu) = cuda

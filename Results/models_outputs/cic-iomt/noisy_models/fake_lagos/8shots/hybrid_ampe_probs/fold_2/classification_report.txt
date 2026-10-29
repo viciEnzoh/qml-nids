@@ -1,0 +1,23 @@
+                         precision    recall  f1-score   support
+
+           arp_spoofing     0.0099    0.1083    0.0181       240
+                 benign     0.6725    0.2834    0.3988      5469
+mqtt-ddos-connect_flood     0.4264    0.9038    0.5794      3338
+mqtt-ddos-publish_flood     0.8756    0.8218    0.8479      9725
+ mqtt-dos-connect_flood     0.8578    0.4887    0.6227     11587
+ mqtt-dos-publish_flood     0.0667    0.0694    0.0680        72
+    mqtt-malformed_data     0.0137    0.4852    0.0267       237
+          recon-os_scan     0.4388    0.4812    0.4590     17889
+       recon-ping_sweep     0.0131    0.3619    0.0252       105
+        recon-port_scan     0.4497    0.1783    0.2554      9888
+          recon-vulscan     0.1256    0.1491    0.1363      1717
+        tcp_ip-ddos-syn     0.5698    0.3937    0.4657      5151
+        tcp_ip-ddos-tcp     0.2886    0.7022    0.4091      4986
+        tcp_ip-ddos-udp     0.0000    0.0000    0.0000      4001
+         tcp_ip-dos-syn     0.8815    0.4631    0.6072     15438
+         tcp_ip-dos-tcp     0.8372    0.7628    0.7983     17050
+         tcp_ip-dos-udp     0.6817    0.8216    0.7452     13993
+
+               accuracy                         0.5477    120886
+              macro avg     0.4240    0.4397    0.3802    120886
+           weighted avg     0.6442    0.5477    0.5659    120886
