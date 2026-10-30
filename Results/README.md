@@ -19,8 +19,8 @@ Results/
 All results are stored on a per-fold basis.
 
 ## Path examples
-- `/home/vincenzo/qml-nids/Results/models_outputs/iot-nidd/trained_models/10perc/hybrid_ampe_probs/fold_1`
-- `/home/vincenzo/qml-nids/Results/models_outputs/cross_eval/crosseval_src_cic-iomt_tgt_edge-iiot/hybrid_ampe_probs/fold_1`
+- `/home/user/qml-nids/Results/models_outputs/iot-nidd/trained_models/10perc/hybrid_ampe_probs/fold_1`
+- `/home/user/qml-nids/Results/models_outputs/cross_eval/crosseval_src_cic-iomt_tgt_edge-iiot/hybrid_ampe_probs/fold_1`
 - `/home/user/qml-nids/Results/models_outputs/iot-nidd/time_to_insight/hybrid_ampe_probs/tti-threshold_50/fold_1`
 - `/home/user/qml-nids/Results/models_outputs/iot-nidd/noisy_models/fake_london/128shots/hybrid_ampe_probs/fold_1`
 
