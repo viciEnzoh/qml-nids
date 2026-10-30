@@ -7,7 +7,7 @@ A Network Intrusion Detection System (NIDS) based on hybrid Quantum Machine Lear
 ```
 .
 ├── Experiments/    # Scripts to run the experiments
-├── Datasets/       # Place your datasets here
+├── Datasets/       # Dataset files in PICKLE format
 ├── Plotting/       # Plotting scripts
 ├── Results/        # Output folder for results
 ├── LICENSE

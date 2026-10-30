@@ -6,14 +6,14 @@ This folder contains all the experimental results supporting the paper: trained 
 
 ```
 Results/
-├── metrics/                  # Post-processed tables used to build the paper's figures
+├── metrics/                  # Post-processed DataFrames (CSVs) used to build the paper's figures
 ├── models_outputs/           # Trained models and raw (soft and hard) model outputs
 │   ├── <dataset_name>/       # One folder per dataset: 'cic-iomt' (IoMT), 'edge-iiot' (Edge), 'iot-nidd' (NIDD)
 │   │   ├── trained_models/   # Trained models and results for different training-set proportions (OC1)
 │   │   ├── time_to_insight/  # Results on resilience to time constraints (OC3)
 │   │   └── noisy_models/     # Results of inference on noisy backends (OC4)
 │   └── cross_eval/           # Cross-evaluation results (OC2)
-└── plots/                    # Figures shown in the paper, including all reliability diagrams (OC5)
+└── plots/                    # Paper figures and additional reliability diagrams (OC5)
 ```
 
 All results are stored on a per-fold basis.
