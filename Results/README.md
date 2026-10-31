@@ -19,10 +19,10 @@ Results/
 All results are stored on a per-fold basis.
 
 ## Path examples
-- `/home/user/qml-nids/Results/models_outputs/iot-nidd/trained_models/10perc/hybrid_ampe_probs/fold_1`
-- `/home/user/qml-nids/Results/models_outputs/cross_eval/crosseval_src_cic-iomt_tgt_edge-iiot/hybrid_ampe_probs/fold_1`
-- `/home/user/qml-nids/Results/models_outputs/iot-nidd/time_to_insight/hybrid_ampe_probs/tti-threshold_50/fold_1`
-- `/home/user/qml-nids/Results/models_outputs/iot-nidd/noisy_models/fake_london/128shots/hybrid_ampe_probs/fold_1`
+- **One fold, δ = 10% of training data of NIDD (OC1)**: `/home/user/qml-nids/Results/models_outputs/iot-nidd/trained_models/10perc/hybrid_ampe_probs/fold_1`
+- **One fold, cross evaluation IoMT→Edge (OC2):**`/home/user/qml-nids/Results/models_outputs/cross_eval/crosseval_src_cic-iomt_tgt_edge-iiot/hybrid_ampe_probs/fold_1`
+- **One fold, observation window τ=50ms (OC3):** `/home/user/qml-nids/Results/models_outputs/iot-nidd/time_to_insight/hybrid_ampe_probs/tti-threshold_50/fold_1`
+- **One fold, noisy simulation on FakeLondon with S=64 shots (OC4):** `/home/user/qml-nids/Results/models_outputs/iot-nidd/noisy_models/fake_london/64shots/hybrid_ampe_probs/fold_1`
 
 ## Appendix: model naming
 
