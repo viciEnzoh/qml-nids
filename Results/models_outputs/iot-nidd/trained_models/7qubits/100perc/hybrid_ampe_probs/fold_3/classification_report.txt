@@ -1,0 +1,16 @@
+                     precision    recall  f1-score   support
+
+             benign     0.9849    0.9937    0.9893     17716
+           dos-http     0.9334    0.7749    0.8468       724
+        dos-tcp-ack     0.9956    0.8792    0.9338      6178
+        dos-tcp-syn     0.9408    0.9995    0.9692     11887
+            dos-udp     0.9009    1.0000    0.9479       100
+    infog-scan-host     0.9408    1.0000    0.9695       302
+      infog-scan-os     0.9667    0.7073    0.8169        82
+    infog-scan-port     0.9968    0.9972    0.9970      3168
+malwr-brutef-telnet     0.8889    0.9412    0.9143        34
+      mitm-arpspoof     0.6000    0.0417    0.0779        72
+
+           accuracy                         0.9719     40263
+          macro avg     0.9149    0.8335    0.8463     40263
+       weighted avg     0.9722    0.9719    0.9706     40263
