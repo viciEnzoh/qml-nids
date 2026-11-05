@@ -56,7 +56,8 @@ In the following table, we report all the configurations used for the experiment
       --output-dir ../Results/example \
       --epochs 100 \
       --batch-size 50 \
-      --num-packets 10
+      --num-packets 10 \
+      --num-qubits 5
 ```
 
 - **`qml_load_and_test.py`** — Evaluate a pre-trained stored model.
